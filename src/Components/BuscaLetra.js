@@ -2,7 +2,6 @@ import React , { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import Lyric from '../Components/Lyric.js'
 import axios from 'axios'
 
@@ -19,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BuscaLetra() {
 
-    const classes = useStyles();
     const [artistaASerBuscado,setArtistaASerBuscado] = useState('');
     const [musicaASerBuscada,setMusicaASerBuscada] = useState('');
     const [letraEncontrada, setLetraEncontrada] = useState('Insira um artista e uma música.');
@@ -48,10 +46,9 @@ export default function BuscaLetra() {
 
     return (
         <div id= "areaBusca">
-            <form >
-            
-            <span class = "entrada"><TextField id="outlined-basic" label="Musica" variant="outlined" className = "botao"  /></span>
-            <span class = "entrada"><TextField id="outlined-basic" label="artista" variant="outlined" className = "botao" /></span>
+            <form onSubmit={buscarLetraDeMusica} >
+                <span className = "entrada"><TextField id="outlined-basic" label="Musica" variant="outlined" className = "botao" onChange={event => setMusicaASerBuscada(event.target.value)} /></span>
+                <span className = "entrada"><TextField id="outlined-basic" label="artista" variant="outlined" className = "botao" onChange={event => setArtistaASerBuscado(event.target.value)}  /></span>
             <div class = "botao"> 
             <Button variant="contained" color="primary" onClick = {buscarLetraDeMusica} > Buscar </Button>
             </div>
